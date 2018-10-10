@@ -27,8 +27,8 @@ def main():
 
     # run_test_init()
     # run_test_rain()
-    # run_test_get_total_rain_amount()
-    run_test_merge_cloud()
+    run_test_get_total_rain_amount()
+    # run_test_merge_cloud()
 
 
 ###############################################################################
@@ -85,6 +85,7 @@ class Cloud(object):
         else:
             self.water = water
 
+        self.total = 0
     def rain(self, rain_amount):
         """
         What comes in:
@@ -132,10 +133,12 @@ class Cloud(object):
         # ---------------------------------------------------------------------
         if rain_amount < self.water:
             self.water = self.water - rain_amount
+            self.total += rain_amount
             return rain_amount
         else:
             water = self.water
             self.water = 0
+            self.total += water
             return water
 
 
@@ -172,7 +175,7 @@ class Cloud(object):
         # TODO: 4. Implement and test this method.
         # ---------------------------------------------------------------------
 
-        
+        return self.total
 
     def merge_cloud(self, another_cloud):
         """
